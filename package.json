@@ -1,0 +1,104 @@
+{
+  "name": "html-rainbow",
+  "displayName": "HTML Rainbow",
+  "description": "Colorizes HTML/XML/JSX/TSX tags and JS/TS object braces based on nesting depth",
+  "version": "0.0.1",
+  "publisher": "htmlrainbow",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheForce00/VSCode-HtmlRainbow"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:html",
+    "onLanguage:xml",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescriptreact",
+    "onLanguage:javascript",
+    "onLanguage:typescript"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "HTML Rainbow",
+      "properties": {
+        "htmlRainbow.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable HTML Rainbow colorization"
+        },
+        "htmlRainbow.colors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "#E6B800",
+            "#E65C00",
+            "#E600E6",
+            "#7A00E6",
+            "#0066E6",
+            "#00B3E6",
+            "#00E699",
+            "#00E600",
+            "#99E600",
+            "#E6E600"
+          ],
+          "description": "Colors to use for nesting levels (cycles when depth exceeds array length)"
+        },
+        "htmlRainbow.languages": {
+          "type": "object",
+          "default": {
+            "html": true,
+            "xml": true,
+            "javascriptreact": true,
+            "typescriptreact": true,
+            "javascript": true,
+            "typescript": true
+          },
+          "description": "Enable/disable colorization per language"
+        },
+        "htmlRainbow.objectBraces.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable colorization of object literal braces in JS/TS"
+        },
+        "htmlRainbow.objectBraces.colorizeKeys": {
+          "type": "boolean",
+          "default": true,
+          "description": "Colorize property keys in object literals"
+        },
+        "htmlRainbow.debounceMs": {
+          "type": "number",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 1000,
+          "description": "Debounce delay in milliseconds for re-parsing on document changes"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/runTest.js",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^18.x",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}
